@@ -1,6 +1,6 @@
 <?php
 // 1. Configurações do Transaction Pooler (Extraídas do painel Supabase > Settings > Database)
-$host     = 'db.fofiwziwsabcxflguqva.supabase.co';
+$host     = 'fofiwziwsabcxflguqva.supabase.co';
 $port     = '6543'; 
 $dbname   = 'postgres';
 $user     = 'postgres';
