@@ -1,27 +1,27 @@
 <?php
-// 1. Dados de Conexão via TRANSACTION POOLER (Porta 6543)
-//postgresql://postgres:[YOUR-PASSWORD]@db.fofiwziwsabcxflguqva.supabase.co:5432/postgres
-$host     = 'fofiwziwsabcxflguqva.supabase.co';
+// 1. Configurações do Transaction Pooler (Extraídas do painel Supabase > Settings > Database)
+$host     = 'db.fofiwziwsabcxflguqva.supabase.co';
 $port     = '5432'; 
 $dbname   = 'postgres';
-$user     = 'postgres'; 
+$user     = 'postgres';
 $password = 'CEI/CFAP/SGP';
 
 try {
-    // 2. DSN com SSL obrigatório e modo de transação
+    // 2. DSN com SSL obrigatório para o Supabase
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
     
     $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_TIMEOUT => 10 
+        PDO::ATTR_TIMEOUT            => 10, // Tempo de espera aumentado para evitar timeouts
     ];
 
     $pdo = new PDO($dsn, $user, $password, $options);
 
 } catch (PDOException $e) {
-    // Temporariamente, vamos logar o erro real para você ver o que falta
-    // Mas sem dar 'echo' para não quebrar os headers do auth.php
-    error_log("Falha crítica no BD: " . $e->getMessage());
-    die("Erro de conexão: Verifique as credenciais no painel do Supabase.");
+    // Log interno do erro real para depuração técnica
+    error_log("Falha de Conexão Supabase: " . $e->getMessage());
+    
+    // Resposta genérica para o usuário (evita quebrar o header do auth.php)
+    die("Erro técnico: Não foi possível conectar ao banco de dados. Verifique os logs do servidor.");
 }
