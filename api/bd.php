@@ -1,7 +1,7 @@
 <?php
 // 1. Dados de Conexão via TRANSACTION POOLER (Porta 6543)
 //postgresql://postgres:[YOUR-PASSWORD]@db.fofiwziwsabcxflguqva.supabase.co:5432/postgres
-$host     = 'db.fofiwziwsabcxflguqva.supabase.co'; // EXEMPLO: Verifique o seu no painel do Supabase
+$host     = 'fofiwziwsabcxflguqva.supabase.co';
 $port     = '5432'; 
 $dbname   = 'postgres';
 $user     = 'postgres'; 
